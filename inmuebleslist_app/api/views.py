@@ -10,7 +10,7 @@ class EmpresaAV(APIView):
     
     def get(self, request):
         empresa = Empresa.objects.all()
-        serializer = EmpresaSerializer(empresa, many=True)
+        serializer = EmpresaSerializer(empresa, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
