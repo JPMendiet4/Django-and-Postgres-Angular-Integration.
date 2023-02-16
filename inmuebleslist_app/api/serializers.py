@@ -10,14 +10,14 @@ class EdificacionSerializer(serializers.ModelSerializer):
         #fields = ['id', 'pais', 'activo', 'imagen']
         #exclude = ['id']
         
-class EmpresaSerializer(serializers.ModelSerializer):
-    # edificacionlist = EdificacionSerializer(many=True, read_only=True)
+class EmpresaSerializer(serializers.HyperlinkedModelSerializer):
+    edificacionlist = EdificacionSerializer(many=True, read_only=True)
     # edificacionlist = serializers.StringRelatedField(many=True)
     # edificacionlist = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    edificacionlist = serializers.HyperlinkedRelatedField(
-        many=True, 
-        read_only=True,
-        view_name='edificacion-detalle')
+    # edificacionlist = serializers.HyperlinkedRelatedField(
+    #     many=True, 
+    #     read_only=True,
+    #     view_name='edificacion-detalle')
     class Meta:
         model = Empresa
         fields = '__all__'
