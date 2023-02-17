@@ -5,7 +5,7 @@ from inmuebleslist_app.models import Edificacion, Empresa, Comentario
 class ComentarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comentario
-        exclude = ['edificación']
+        exclude = ['edificacion']
         #fields = '__all__'
 
 
@@ -17,7 +17,7 @@ class EdificacionSerializer(serializers.ModelSerializer):
         #fields = ['id', 'pais', 'activo', 'imagen']
         #exclude = ['id']
         
-class EmpresaSerializer(serializers.HyperlinkedModelSerializer):
+class EmpresaSerializer(serializers.ModelSerializer):
     edificacionlist = EdificacionSerializer(many=True, read_only=True)
     # edificacionlist = serializers.StringRelatedField(many=True)
     # edificacionlist = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
