@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework import generics, mixins, viewsets
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticated
 from inmuebleslist_app.models import Edificacion, Empresa, Comentario
 from inmuebleslist_app.api.serializers import EdificacionSerializer, EmpresaSerializer, ComentarioSerializer
 
@@ -59,6 +60,7 @@ class ComentarioDetail(generics.RetrieveUpdateDestroyAPIView):
 #         return self.retrieve(request, *args, **kwargs)
 
 class EmpresaVS(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated] #Autorización para acceder a una api
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
 
