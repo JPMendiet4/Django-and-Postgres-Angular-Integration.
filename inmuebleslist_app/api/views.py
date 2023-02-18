@@ -8,6 +8,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from inmuebleslist_app.models import Edificacion, Empresa, Comentario
 from inmuebleslist_app.api.serializers import EdificacionSerializer, EmpresaSerializer, ComentarioSerializer
+from inmuebleslist_app.api.permissions import AdminOrReadOnly
 
 
 class ComentarioCreate(generics.CreateAPIView):
@@ -60,7 +61,7 @@ class ComentarioDetail(generics.RetrieveUpdateDestroyAPIView):
 #         return self.retrieve(request, *args, **kwargs)
 
 class EmpresaVS(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated] #Autorización para acceder a una api
+    permission_classes = [AdminOrReadOnly] #Autorización para acceder a una api
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
 
