@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 # from inmuebleslist_app.api.views import inmueble_list, inmueble_detalle
-from inmuebleslist_app.api.views import (EmpresaAV, EdificacionAV, EdificacionDetalleAV, EmpresaDetalleAV, 
+from inmuebleslist_app.api.views import (EdificacionAV, EdificacionDetalleAV, EmpresaDetalleAV, 
                                          ComentarioList, ComentarioDetail, ComentarioCreate, EmpresaVS)
 
 router = DefaultRouter()

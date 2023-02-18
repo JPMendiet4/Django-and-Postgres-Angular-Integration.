@@ -46,33 +46,70 @@ class ComentarioDetail(generics.RetrieveUpdateDestroyAPIView):
 #     def get(self, request, *args, **kwargs):
 #         return self.retrieve(request, *args, **kwargs)
 
+class EmpresaVS(viewsets.ModelViewSet):
+    queryset = Empresa.objects.all()
+    serializer_class = EmpresaSerializer
 
-class EmpresaVS(viewsets.ViewSet):
+# class EmpresaVS(viewsets.ViewSet):
     
-    def list(self, request):
-        queryset = Empresa.objects.all()
-        serializer = EmpresaSerializer(queryset, many=True)
-        return Response(serializer.data)
+#     def list(self, request):
+#         queryset = Empresa.objects.all()
+#         serializer = EmpresaSerializer(queryset, many=True)
+#         return Response(serializer.data)
     
-    def retrieve(self, request, pk=None):
-        queryset = Empresa.objects.all()
-        edificacionlist = get_object_or_404(queryset, pk=pk)
-        serializer = EmpresaSerializer(edificacionlist)
-        return Response(serializer.data)
-class EmpresaAV(APIView):
+#     def retrieve(self, request, pk=None):
+#         queryset = Empresa.objects.all()
+#         edificacionlist = get_object_or_404(queryset, pk=pk)
+#         serializer = EmpresaSerializer(edificacionlist)
+#         return Response(serializer.data)
     
-    def get(self, request):
-        empresa = Empresa.objects.all()
-        serializer = EmpresaSerializer(empresa, many=True, context={'request': request})
-        return Response(serializer.data)
+#     def create(self, request):
+#         serializer = EmpresaSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+#     def update(self, request, pk):
+#         try:
+#             empresa = Empresa.objects.get(pk=pk)
+#         except Empresa.DoesNotExist:
+#             return Response({'Error': 'Empresa no encontrada'}, status=status.HTTP_400_BAD_REQUEST)
 
-    def post(self, request):
-        serializer = EmpresaSerializer(data=request.data) 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#         serializer = EmpresaSerializer(empresa, data=request.data)
+        
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+    
+#     def destroy(self, request, pk):
+#         try:
+#             empresa = Empresa.objects.get(pk=pk)
+#         except Empresa.DoesNotExist:
+#             return Response({'Error': 'Empresa no encontrada'}, status=status.HTTP_400_BAD_REQUEST)
+
+#         serializer = EmpresaSerializer(empresa, data=request.data)
+        
+#         empresa.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+# class EmpresaAV(APIView):
+    
+#     def get(self, request):
+#         empresa = Empresa.objects.all()
+#         serializer = EmpresaSerializer(empresa, many=True, context={'request': request})
+#         return Response(serializer.data)
+
+#     def post(self, request):
+#         serializer = EmpresaSerializer(data=request.data) 
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         
         
