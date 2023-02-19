@@ -19,5 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tienda/', include('inmuebleslist_app.api.urls')),
-    path('api-auth', include('rest_framework.urls')), # link para usuario en apis
+    path('account/', include('user_app.api.urls')),
+#    path('api-auth', include('rest_framework.urls')), # link para usuario en apis
 ]
