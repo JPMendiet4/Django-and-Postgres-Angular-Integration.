@@ -20,7 +20,7 @@ class ComentarioCreate(generics.CreateAPIView):
     def perform_create(self, serializer):
         pk = self.kwargs.get('pk')
         inmueble = Edificacion.objects.get(pk=pk)
-        serializer.save(edificacion=inmueble)
+        
             
             
         user = self.request.user
@@ -28,6 +28,15 @@ class ComentarioCreate(generics.CreateAPIView):
         
         if comentario_queryset.exists():
             raise ValidationError('El usuario ya escribio un comentario para este inmueble')
+        
+        if inmueble.number_calificacion == 0:
+            inmueble.avg_calificacion = serializer.validated_data['calificacion']
+        
+        else:
+            inmueble.avg_calificacion =( serializer.validated_data['calificacion']+inmueble.avg_calificacion)/2
+            
+        inmueble.number_calificacion = inmueble.number_calificacion + 1
+        inmueble.save()
         
         serializer.save(edificacion=inmueble, comentario_user=user)
 class ComentarioList(generics.ListCreateAPIView):
