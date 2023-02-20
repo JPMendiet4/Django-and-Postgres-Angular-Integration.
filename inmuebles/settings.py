@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'inmuebleslist_app',
     'rest_framework',
     'rest_framework.authtoken', # una tabla que almacena los tokens
+    'user_app',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +76,17 @@ WSGI_APPLICATION = 'inmuebles.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'NiGNc02LpytfC1spFeu8',
+#         'HOST': 'containers-us-west-94.railway.app',
+#         'PORT': '6067',
+#     }
+# }
 
 DATABASES = {
     'default': {
